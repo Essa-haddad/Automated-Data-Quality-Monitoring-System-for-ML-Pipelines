@@ -1,6 +1,4 @@
 import pandas as pd
-from typing import Optional
-
 
 DEFAULT_MISSING_THRESHOLD = 0.10
 
@@ -14,7 +12,7 @@ def calculate_missing_counts(df: pd.DataFrame) -> dict:
     return df.isnull().sum().to_dict()
 
 
-def resolve_missing_thresholds(df: pd.DataFrame, thresholds: dict = None,
+def resolve_missing_thresholds(df: pd.DataFrame, thresholds=None,
                                default_threshold: float = DEFAULT_MISSING_THRESHOLD) -> dict:
     resolved = {}
 
@@ -27,7 +25,7 @@ def resolve_missing_thresholds(df: pd.DataFrame, thresholds: dict = None,
     return resolved
 
 
-def check_missing_thresholds(df: pd.DataFrame, thresholds: dict = None,
+def check_missing_thresholds(df: pd.DataFrame, thresholds=None,
                              default_threshold: float = DEFAULT_MISSING_THRESHOLD) -> dict:
     missing_percentages = calculate_missing_percentages(df)
     missing_counts = calculate_missing_counts(df)
@@ -54,6 +52,6 @@ def check_missing_thresholds(df: pd.DataFrame, thresholds: dict = None,
     }
 
 
-def run_missing_checks(df: pd.DataFrame, thresholds: Optional[dict] = None,
+def run_missing_checks(df: pd.DataFrame, thresholds=None,
                        default_threshold: float = DEFAULT_MISSING_THRESHOLD) -> dict:
     return check_missing_thresholds(df, thresholds, default_threshold)
