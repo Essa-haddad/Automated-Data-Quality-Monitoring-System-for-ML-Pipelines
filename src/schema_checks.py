@@ -14,7 +14,7 @@ def check_missing_columns(df: pd.DataFrame, schema: dict) -> dict:
     columns = set(df.columns)
     expected_columns = set(schema.keys())
 
-    missing = list(expected_columns - columns)
+    missing = sorted(list(expected_columns - columns))
 
     return {"check": "missing_columns",
             "status": "PASS" if len(missing) == 0 else "FAIL",
@@ -29,7 +29,7 @@ def check_extra_columns(df: pd.DataFrame, schema: dict) -> dict:
 
     return {"check": "extra_columns",
             "status": "PASS" if len(extra) == 0 else "WARNING",
-            "missing_columns": extra}
+            "extra_columns": extra}
 
 
 def check_column_dtypes(df: pd.DataFrame, expected_schema: dict) -> dict:

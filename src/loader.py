@@ -25,7 +25,7 @@ def get_csv_files(folder_path: str) -> list:
     if not os.path.exists(folder_path):
         raise FileNotFoundError(f"Folder not found: {folder_path}")
 
-    csv_files = [os.path.join(folder_path, file) for file in os.listdir(folder_path) if file.endswith(".csv")]
+    csv_files = [os.path.join(folder_path, file) for file in os.listdir(folder_path) if file.lower().endswith(".csv")]
 
     return sorted(csv_files)
 
